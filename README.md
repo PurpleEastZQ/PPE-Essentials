@@ -8,7 +8,7 @@ PPE Essential is a lightweight server-side mod that adds useful commands (like /
 
 ## Features
 
-- Server-side only mod, no client installation required.
+- Server-side only mod (You can still install it on your client for singleplayer use)
 - No extra dependencies, ready out of the box.
 - Polished messages with clickable buttons, titles, and sounds.
 - Configurable command toggles, permission levels and more.
