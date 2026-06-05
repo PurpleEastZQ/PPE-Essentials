@@ -6,6 +6,8 @@ PPE Essential is a lightweight mod that adds useful commands (like /home /tpa) a
 
 ![PPE Essential command preview](artwork/ppe-essential-help-preview.png)
 
+<br>
+
 ## Features
 
 - Server-side only mod (Can still be installed on your client for singleplayer use.)
@@ -15,11 +17,15 @@ PPE Essential is a lightweight mod that adds useful commands (like /home /tpa) a
 - Multilingual support with automatic client language detection and a configurable `fallbackLanguage`.
 - Persistent player data for homes, warps, back locations, fly, god mode, and notice triggers.
 
+<br>
+
 ## Supported Versions
 
 - NeoForge 1.21.1
 
 Fabric support and additional Minecraft versions are in progress.
+
+<br>
 
 ## Commands
 
@@ -39,6 +45,8 @@ Fabric support and additional Minecraft versions are in progress.
 | `/back` or `/dback` | Return to your last death location. |
 | `/tback` | Return to your previous teleport location. |
 
+<br>
+
 ### Homes And Warps
 
 | Command | Description |
@@ -49,6 +57,8 @@ Fabric support and additional Minecraft versions are in progress.
 | `/setwarp <name>` | Create a server warp. |
 | `/warp <name>` | Teleport to a server warp. |
 | `/delwarp <name>` | Delete a server warp. |
+
+<br>
 
 ### Utility And Admin
 
@@ -64,15 +74,19 @@ Fabric support and additional Minecraft versions are in progress.
 | `/ppe-essential reset all` | Clear all player data. |
 | `/ppe-essential reset notice` | Clear notice trigger data. |
 
-Disabled or unavailable commands are shown in red in `/ppe-essential help`.
+<br>
 
 ## Configuration
 
 All configuration options are located in `config/ppe_essential-common.toml`.
 
+<br>
+
 ## Installation
 
 Put the PPE Essential jar into your `mods` folder.
+
+<br>
 
 ## Building
 
