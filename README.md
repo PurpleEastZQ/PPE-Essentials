@@ -97,6 +97,17 @@ Build Fabric:
 .\gradlew.bat buildFabric --no-daemon
 ```
 
+When passing PowerShell project properties, quote the whole `-P...` argument:
+
+```powershell
+.\gradlew.bat buildNeoForge "-Ptarget_minecraft_version=1.21.11" --no-daemon
+.\gradlew.bat buildFabric "-Ptarget_minecraft_version=1.21.11" --no-daemon
+```
+
+Build environment requirements:
+
+- JDK 25
+
 Built jars are generated under `build/libs/`.
 
 Put the matches jar into your `mods` folder.
