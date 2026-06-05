@@ -82,20 +82,12 @@ All configuration options are located in `config/ppe_essential-common.toml`.
 
 <br>
 
-## Installation
-
-Put the PPE Essential jar into your `mods` folder.
-
-<br>
-
-## Building
+## Building & Installation
 
 ```powershell
-.\gradlew.bat build --no-daemon
+.\gradlew.bat buildNeoForge --no-daemon
 ```
 
 Built jars are generated under `build/libs/`.
 
-## License
-
-MIT
+Put the jar into your `mods` folder.
