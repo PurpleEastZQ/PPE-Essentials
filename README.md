@@ -4,7 +4,7 @@
 
 PPE Essential is a lightweight mod that adds useful commands (like /home /tpa) and admin controls, with highly configurable options and polished multilingual messages.
 
-![PPE Essential command preview](artwork/ppe-essential-help-preview.png)
+![PPE Essential command preview](https://raw.githubusercontent.com/PurpleEastZQ/PPE-Essential/master/artwork/ppe-essential-help-preview.png)
 
 <br>
 
