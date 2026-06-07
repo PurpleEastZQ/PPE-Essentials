@@ -2,7 +2,7 @@
 
 [![Modrinth](https://img.shields.io/badge/Modrinth-PPE%20Essential-00AF5C?style=flat&logo=modrinth&logoColor=white)](https://modrinth.com/mod/ppe-essential) [![CurseForge](https://img.shields.io/badge/CurseForge-PPE%20Essential-F16436?style=flat&logo=curseforge&logoColor=white)](https://www.curseforge.com/minecraft/mc-mods/ppe-essential) [![GitHub](https://img.shields.io/badge/GitHub-PurpleEastZQ%2FPPE--Essential-181717?style=flat&logo=github&logoColor=white)](https://github.com/PurpleEastZQ/PPE-Essential)
 
-PPE Essential is a lightweight mod that adds useful commands (like /home /tpa) and functions with highly configurable options.
+PPE Essential is a lightweight mod that adds useful commands (like /home /tpa) and tweaks, with highly configurable options.
 
 ![PPE Essential command preview](https://raw.githubusercontent.com/PurpleEastZQ/PPE-Essential/master/artwork/ppe-essential-help-preview.png)
 
@@ -11,10 +11,10 @@ PPE Essential is a lightweight mod that adds useful commands (like /home /tpa) a
 ## Features
 
 - Server-side only mod (Can still be installed on your client for singleplayer use.)
-- No extra dependencies, ready out of the box.
-- Polished messages with clickable buttons, titles, and sounds.
 - Configurable command toggles, permission levels and more.
 - Configurable protection against creeper, enderman, and ravager block damage.
+- No extra dependencies, ready out of the box.
+- Polished messages with clickable buttons, titles, and sounds.
 - Multilingual support with automatic client language detection and a configurable `fallbackLanguage`.
 - Persistent player data for homes, warps, back locations, fly, god mode, and notice triggers.
 
