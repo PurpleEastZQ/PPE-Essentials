@@ -13,7 +13,10 @@ runs/
 *.iws
 out/
 
-# VS Code / Eclipse, if opened there later
+# Codex
+.codex/
+
+# VS Code / Eclipse
 .vscode/
 .settings/
 .classpath
