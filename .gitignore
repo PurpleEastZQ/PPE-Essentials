@@ -13,15 +13,15 @@ runs/
 *.iws
 out/
 
-# Codex
-.codex/
-
 # VS Code / Eclipse
 .vscode/
 .settings/
 .classpath
 .project
 bin/
+
+# Codex
+.codex/
 
 # Logs, crash dumps, and profiling output
 *.log
