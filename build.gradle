@@ -310,7 +310,7 @@ if (isFabric) {
                                  mod_authors                  : mod_authors,
                                  mod_description              : mod_description]
         inputs.properties replaceProperties
-        filesMatching(['fabric.mod.json', 'ppe_essential.mixins.json']) {
+        filesMatching(['fabric.mod.json', 'ppe_essentials.mixins.json']) {
             expand replaceProperties
         }
     }

@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "package": "me.purpleeast.mods.ppe_essentials.mixin",
+  "compatibilityLevel": "${mixin_compatibility_level}",
+  "mixins": [
+    "CommandsMixin",
+    "CreeperMixin",
+    "CropBlockMixin",
+    "EndermanLeaveBlockGoalMixin",
+    "EndermanTakeBlockGoalMixin",
+    "RavagerMixin",
+    "ServerPlayerMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,10 +1,10 @@
-# PPE Essential
+# PPE Essentials
 
-[![Modrinth](https://img.shields.io/badge/Modrinth-PPE%20Essential-00AF5C?style=flat&logo=modrinth&logoColor=white)](https://modrinth.com/mod/ppe-essential) [![CurseForge](https://img.shields.io/badge/CurseForge-PPE%20Essential-F16436?style=flat&logo=curseforge&logoColor=white)](https://www.curseforge.com/minecraft/mc-mods/ppe-essential) [![GitHub](https://img.shields.io/badge/GitHub-PurpleEastZQ%2FPPE--Essential-181717?style=flat&logo=github&logoColor=white)](https://github.com/PurpleEastZQ/PPE-Essential)
+[![Modrinth](https://img.shields.io/badge/Modrinth-PPE%20Essentials-00AF5C?style=flat&logo=modrinth&logoColor=white)](https://modrinth.com/mod/ppe-essentials) [![CurseForge](https://img.shields.io/badge/CurseForge-PPE%20Essentials-F16436?style=flat&logo=curseforge&logoColor=white)](https://www.curseforge.com/minecraft/mc-mods/ppe-essentials) [![GitHub](https://img.shields.io/badge/GitHub-PurpleEastZQ%2FPPE--Essentials-181717?style=flat&logo=github&logoColor=white)](https://github.com/PurpleEastZQ/PPE-Essentials)
 
-PPE Essential is a lightweight mod that adds useful commands (like /tpa /repeat) and tweaks, with highly configurable options.
+PPE Essentials is a lightweight mod that adds useful commands (like /tpa /repeat) and tweaks, with highly configurable options.
 
-![PPE Essential command preview](https://raw.githubusercontent.com/PurpleEastZQ/PPE-Essential/master/artwork/ppe-essential-help-preview.png)
+![PPE Essentials command preview](https://raw.githubusercontent.com/PurpleEastZQ/PPE-Essentials/master/artwork/ppe-essentials-help-preview.png)
 
 <br>
 
@@ -72,15 +72,15 @@ Additional Minecraft 1.21+ versions are planned.
 | `/fly [player]` | Toggle flight for yourself or another player. |
 | `/god [player]` | Toggle god mode for yourself or another player. |
 | `/repeat <times> [command]` | Repeat your last command or a specified command. |
-| `/ppe-essential help` | Show the command list. Disabled or unavailable commands are shown in red. |
-| `/ppe-essential reset all` | Clear all player data. |
-| `/ppe-essential reset notice` | Clear notice trigger data. |
+| `/ppe-ess help` | Show the command list. Disabled or unavailable commands are shown in red. |
+| `/ppe-ess reset all` | Clear all player data. |
+| `/ppe-ess reset notice` | Clear notice trigger data. |
 
 <br>
 
 ## Configuration
 
-All configuration options are located in `config/ppe_essential-common.toml`.
+All configuration options are located in `config/ppe_essentials-common.toml`.
 
 <br>
 
