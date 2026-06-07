@@ -12,6 +12,7 @@ group = mod_group_id
 def effectiveModId = mod_id.toString()
 def target_loader = (findProperty('target_loader') ?: 'neoforge').toString()
 def target_minecraft_version = (findProperty('target_minecraft_version') ?: minecraft_version).toString()
+def dev_player_name = (findProperty('dev_player_name') ?: 'Dev').toString()
 def propertyKeyForVersion = { String minecraftVersion, String propertyName ->
     "mc_${minecraftVersion.replaceAll(/[^A-Za-z0-9]/, '_')}_${propertyName}"
 }
@@ -76,6 +77,12 @@ def ensureRunDirectory = { String path ->
     directory.mkdirs()
     return directory
 }
+def runDirectoryPath = { String loaderName, String runName ->
+    "runs/${loaderName}/${target_minecraft_version}/${runName}"
+}
+def runDirectory = { String loaderName, String runName ->
+    ensureRunDirectory(runDirectoryPath(loaderName, runName))
+}
 
 if (isNeoForge) {
     apply plugin: 'net.neoforged.moddev'
@@ -121,27 +128,28 @@ neoForge {
     runs {
         client {
             client()
-            gameDirectory = ensureRunDirectory('runs/neoforge/client')
+            gameDirectory = runDirectory('neoforge', 'client')
+            programArguments.addAll '--username', dev_player_name
 
             systemProperty 'neoforge.enabledGameTestNamespaces', effectiveModId
         }
 
         server {
             server()
-            gameDirectory = ensureRunDirectory('runs/neoforge/server')
+            gameDirectory = runDirectory('neoforge', 'server')
             programArgument '--nogui'
             systemProperty 'neoforge.enabledGameTestNamespaces', effectiveModId
         }
 
         gameTestServer {
             type = "gameTestServer"
-            gameDirectory = ensureRunDirectory('runs/neoforge/gameTestServer')
+            gameDirectory = runDirectory('neoforge', 'gameTestServer')
             systemProperty 'neoforge.enabledGameTestNamespaces', effectiveModId
         }
 
         data {
             data()
-            gameDirectory = ensureRunDirectory('runs/neoforge/data')
+            gameDirectory = runDirectory('neoforge', 'data')
 
             programArguments.addAll '--mod', effectiveModId, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/common/resources/').getAbsolutePath()
         }
@@ -174,12 +182,15 @@ if (isFabric) {
 loom {
     runs {
         client {
-            ensureRunDirectory('runs/fabric/client')
-            runDir 'runs/fabric/client'
+            def clientRunDirectory = runDirectoryPath('fabric', 'client')
+            ensureRunDirectory(clientRunDirectory)
+            runDir clientRunDirectory
+            programArgs '--username', dev_player_name
         }
         server {
-            ensureRunDirectory('runs/fabric/server')
-            runDir 'runs/fabric/server'
+            def serverRunDirectory = runDirectoryPath('fabric', 'server')
+            ensureRunDirectory(serverRunDirectory)
+            runDir serverRunDirectory
         }
     }
 }

@@ -4,8 +4,6 @@ import net.fabricmc.fabric.api.entity.event.v1.ServerLivingEntityEvents;
 import net.fabricmc.fabric.api.entity.event.v1.ServerPlayerEvents;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
-import net.minecraft.network.chat.ClickEvent;
-import net.minecraft.network.chat.HoverEvent;
 import net.minecraft.network.chat.Style;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
@@ -24,15 +22,15 @@ public class PpeEvents {
     public static void register() {
         ServerLivingEntityEvents.AFTER_DEATH.register((entity, damageSource) -> {
             if (entity instanceof ServerPlayer player) {
-                PpePlayerData.get(player.server).setDeathBack(player.getUUID(), PpeLocation.of(player));
+                PpePlayerData.get(PpeCompat.server(player)).setDeathBack(player.getUUID(), PpeLocation.of(player));
             }
         });
         ServerLivingEntityEvents.ALLOW_DAMAGE.register((entity, damageSource, amount) ->
-                !(entity instanceof ServerPlayer player && PpePlayerData.get(player.server).isGodEnabled(player.getUUID()))
+                !(entity instanceof ServerPlayer player && PpePlayerData.get(PpeCompat.server(player)).isGodEnabled(player.getUUID()))
         );
         ServerPlayerEvents.AFTER_RESPAWN.register((oldPlayer, newPlayer, alive) -> {
-            if (PpePlayerData.get(newPlayer.server).markBackNoticeShown(newPlayer.getUUID())) {
-                BACK_NOTICE_TICKS.put(newPlayer.getUUID(), newPlayer.server.getTickCount() + 10);
+            if (PpePlayerData.get(PpeCompat.server(newPlayer)).markBackNoticeShown(newPlayer.getUUID())) {
+                BACK_NOTICE_TICKS.put(newPlayer.getUUID(), PpeCompat.server(newPlayer).getTickCount() + 10);
             }
         });
         ServerPlayConnectionEvents.JOIN.register((handler, sender, server) -> {
@@ -60,11 +58,11 @@ public class PpeEvents {
             backIterator.remove();
             ServerPlayer player = server.getPlayerList().getPlayer(entry.getKey());
             if (player != null) {
-                player.playNotifySound(SoundEvents.CHICKEN_EGG, SoundSource.PLAYERS, 1.0F, 1.2F);
+                PpeCompat.playSound(player, SoundEvents.CHICKEN_EGG, SoundSource.PLAYERS, 1.0F, 1.2F);
                 player.sendSystemMessage(PpeLang.prefixedComponent(player, "ppe_essentials.back.notice")
                         .withStyle(Style.EMPTY
-                                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/back"))
-                                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, PpeLang.component(player, "ppe_essentials.back.notice.tooltip")))));
+                                .withClickEvent(PpeCompat.suggestCommandClick("/back"))
+                                .withHoverEvent(PpeCompat.showTextHover(PpeLang.component(player, "ppe_essentials.back.notice.tooltip")))));
             }
         }
 
@@ -78,11 +76,11 @@ public class PpeEvents {
             joinIterator.remove();
             ServerPlayer player = server.getPlayerList().getPlayer(entry.getKey());
             if (player != null && PpePlayerData.get(server).markFirstJoinNoticeShown(player.getUUID())) {
-                player.playNotifySound(SoundEvents.CHICKEN_EGG, SoundSource.PLAYERS, 1.0F, 1.2F);
+                PpeCompat.playSound(player, SoundEvents.CHICKEN_EGG, SoundSource.PLAYERS, 1.0F, 1.2F);
                 player.sendSystemMessage(PpeLang.prefixedComponent(player, "ppe_essentials.first_join.notice")
                         .withStyle(Style.EMPTY
-                                .withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/ppe-ess help"))
-                                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, PpeLang.component(player, "ppe_essentials.first_join.notice.tooltip")))));
+                                .withClickEvent(PpeCompat.runCommandClick("/ppe-ess help"))
+                                .withHoverEvent(PpeCompat.showTextHover(PpeLang.component(player, "ppe_essentials.first_join.notice.tooltip")))));
             }
         }
     }

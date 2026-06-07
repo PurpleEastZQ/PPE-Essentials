@@ -1,7 +1,5 @@
 package me.purpleeast.mods.ppe_essentials;
 
-import net.minecraft.network.chat.ClickEvent;
-import net.minecraft.network.chat.HoverEvent;
 import net.minecraft.network.chat.Style;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
@@ -34,21 +32,21 @@ public class PpeEvents {
     @SubscribeEvent
     public static void onPlayerDeath(LivingDeathEvent event) {
         if (event.getEntity() instanceof ServerPlayer player) {
-            PpePlayerData.get(player.server).setDeathBack(player.getUUID(), PpeLocation.of(player));
+            PpePlayerData.get(PpeCompat.server(player)).setDeathBack(player.getUUID(), PpeLocation.of(player));
         }
     }
 
     @SubscribeEvent
     public static void onPlayerDamage(LivingIncomingDamageEvent event) {
-        if (event.getEntity() instanceof ServerPlayer player && PpePlayerData.get(player.server).isGodEnabled(player.getUUID())) {
+        if (event.getEntity() instanceof ServerPlayer player && PpePlayerData.get(PpeCompat.server(player)).isGodEnabled(player.getUUID())) {
             event.setCanceled(true);
         }
     }
 
     @SubscribeEvent
     public static void onPlayerRespawn(PlayerEvent.PlayerRespawnEvent event) {
-        if (event.getEntity() instanceof ServerPlayer player && PpePlayerData.get(player.server).markBackNoticeShown(player.getUUID())) {
-            BACK_NOTICE_TICKS.put(player.getUUID(), player.server.getTickCount() + 10);
+        if (event.getEntity() instanceof ServerPlayer player && PpePlayerData.get(PpeCompat.server(player)).markBackNoticeShown(player.getUUID())) {
+            BACK_NOTICE_TICKS.put(player.getUUID(), PpeCompat.server(player).getTickCount() + 10);
         }
     }
 
@@ -56,17 +54,17 @@ public class PpeEvents {
     public static void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event) {
         if (event.getEntity() instanceof ServerPlayer player
                 && PpeConfig.firstJoinNotice()
-                && !PpePlayerData.get(player.server).hasFirstJoinNoticeShown(player.getUUID())) {
-            FIRST_JOIN_NOTICE_TICKS.put(player.getUUID(), player.server.getTickCount() + 40);
+                && !PpePlayerData.get(PpeCompat.server(player)).hasFirstJoinNoticeShown(player.getUUID())) {
+            FIRST_JOIN_NOTICE_TICKS.put(player.getUUID(), PpeCompat.server(player).getTickCount() + 40);
         }
     }
 
     @SubscribeEvent
     public static void onPlayerTeleport(EntityTeleportEvent event) {
         if (event.getEntity() instanceof ServerPlayer player) {
-            PpePlayerData.get(player.server).setTeleportBack(
+            PpePlayerData.get(PpeCompat.server(player)).setTeleportBack(
                     player.getUUID(),
-                    new PpeLocation(player.serverLevel().dimension(), event.getPrevX(), event.getPrevY(), event.getPrevZ(), player.getYRot(), player.getXRot())
+                    new PpeLocation(PpeCompat.level(player).dimension(), event.getPrevX(), event.getPrevY(), event.getPrevZ(), player.getYRot(), player.getXRot())
             );
         }
     }
@@ -89,7 +87,7 @@ public class PpeEvents {
     public static void onCommand(CommandEvent event) {
         if (PpeConfig.commandEnabled("repeat")
                 && event.getParseResults().getContext().getSource().getEntity() instanceof ServerPlayer player
-                && player.hasPermissions(PpeConfig.commandPermission("repeat"))) {
+                && PpeCompat.hasPermission(player, PpeConfig.commandPermission("repeat"))) {
             PpeCommands.rememberCommand(player, event.getParseResults().getReader().getString());
         }
     }
@@ -107,11 +105,11 @@ public class PpeEvents {
             backIterator.remove();
             ServerPlayer player = server.getPlayerList().getPlayer(entry.getKey());
             if (player != null) {
-                player.playNotifySound(SoundEvents.CHICKEN_EGG, SoundSource.PLAYERS, 1.0F, 1.2F);
+                PpeCompat.playSound(player, SoundEvents.CHICKEN_EGG, SoundSource.PLAYERS, 1.0F, 1.2F);
                 player.sendSystemMessage(PpeLang.prefixedComponent(player, "ppe_essentials.back.notice")
                         .withStyle(Style.EMPTY
-                                .withClickEvent(new ClickEvent(ClickEvent.Action.SUGGEST_COMMAND, "/back"))
-                                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, PpeLang.component(player, "ppe_essentials.back.notice.tooltip")))));
+                                .withClickEvent(PpeCompat.suggestCommandClick("/back"))
+                                .withHoverEvent(PpeCompat.showTextHover(PpeLang.component(player, "ppe_essentials.back.notice.tooltip")))));
             }
         }
 
@@ -125,11 +123,11 @@ public class PpeEvents {
             joinIterator.remove();
             ServerPlayer player = server.getPlayerList().getPlayer(entry.getKey());
             if (player != null && PpePlayerData.get(server).markFirstJoinNoticeShown(player.getUUID())) {
-                player.playNotifySound(SoundEvents.CHICKEN_EGG, SoundSource.PLAYERS, 1.0F, 1.2F);
+                PpeCompat.playSound(player, SoundEvents.CHICKEN_EGG, SoundSource.PLAYERS, 1.0F, 1.2F);
                 player.sendSystemMessage(PpeLang.prefixedComponent(player, "ppe_essentials.first_join.notice")
                         .withStyle(Style.EMPTY
-                                .withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/ppe-ess help"))
-                                .withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, PpeLang.component(player, "ppe_essentials.first_join.notice.tooltip")))));
+                                .withClickEvent(PpeCompat.runCommandClick("/ppe-ess help"))
+                                .withHoverEvent(PpeCompat.showTextHover(PpeLang.component(player, "ppe_essentials.first_join.notice.tooltip")))));
             }
         }
     }

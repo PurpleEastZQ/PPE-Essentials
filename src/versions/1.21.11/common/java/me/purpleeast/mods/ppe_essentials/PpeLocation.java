@@ -2,8 +2,8 @@ package me.purpleeast.mods.ppe_essentials;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
@@ -13,12 +13,12 @@ import java.util.Optional;
 
 public record PpeLocation(ResourceKey<Level> level, double x, double y, double z, float yRot, float xRot) {
     public static PpeLocation of(ServerPlayer player) {
-        return new PpeLocation(player.serverLevel().dimension(), player.getX(), player.getY(), player.getZ(), player.getYRot(), player.getXRot());
+        return new PpeLocation(PpeCompat.level(player).dimension(), player.getX(), player.getY(), player.getZ(), player.getYRot(), player.getXRot());
     }
 
     public CompoundTag save() {
         CompoundTag tag = new CompoundTag();
-        tag.putString("level", level.location().toString());
+        tag.putString("level", level.identifier().toString());
         tag.putDouble("x", x);
         tag.putDouble("y", y);
         tag.putDouble("z", z);
@@ -28,8 +28,16 @@ public record PpeLocation(ResourceKey<Level> level, double x, double y, double z
     }
 
     public static PpeLocation load(CompoundTag tag) {
-        ResourceKey<Level> level = ResourceKey.create(Registries.DIMENSION, ResourceLocation.parse(tag.getString("level")));
-        return new PpeLocation(level, tag.getDouble("x"), tag.getDouble("y"), tag.getDouble("z"), tag.getFloat("yRot"), tag.getFloat("xRot"));
+        String levelId = tag.getString("level").orElse("minecraft:overworld");
+        ResourceKey<Level> level = ResourceKey.create(Registries.DIMENSION, Identifier.parse(levelId));
+        return new PpeLocation(
+                level,
+                tag.getDouble("x").orElse(0.0D),
+                tag.getDouble("y").orElse(0.0D),
+                tag.getDouble("z").orElse(0.0D),
+                tag.getFloat("yRot").orElse(0.0F),
+                tag.getFloat("xRot").orElse(0.0F)
+        );
     }
 
     public Optional<ServerLevel> resolve(MinecraftServer server) {

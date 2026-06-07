@@ -2,6 +2,7 @@ package me.purpleeast.mods.ppe_essentials.mixin;
 
 import com.mojang.brigadier.ParseResults;
 import me.purpleeast.mods.ppe_essentials.PpeCommands;
+import me.purpleeast.mods.ppe_essentials.PpeCompat;
 import me.purpleeast.mods.ppe_essentials.PpeConfig;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -18,7 +19,7 @@ public class CommandsMixin {
         CommandSourceStack source = parseResults.getContext().getSource();
         if (PpeConfig.commandEnabled("repeat")
                 && source.getEntity() instanceof ServerPlayer player
-                && player.hasPermissions(PpeConfig.commandPermission("repeat"))) {
+                && PpeCompat.hasPermission(player, PpeConfig.commandPermission("repeat"))) {
             PpeCommands.rememberCommand(player, command);
         }
     }

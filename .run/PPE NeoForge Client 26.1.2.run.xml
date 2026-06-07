@@ -1,15 +1,15 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="PPE NeoForge Client" type="GradleRunConfiguration" factoryName="Gradle">
+  <configuration default="false" name="PPE NeoForge Client 26.1.2" type="GradleRunConfiguration" factoryName="Gradle">
     <ExternalSystemSettings>
       <option name="externalProjectPath" value="$PROJECT_DIR$" />
       <option name="externalSystemIdString" value="GRADLE" />
       <option name="taskNames">
         <list>
-          <option value="runNeoForgeClient" />
+          <option value="runClient" />
         </list>
       </option>
       <option name="vmOptions" />
-      <option name="scriptParameters" />
+      <option name="scriptParameters" value="-Ptarget_loader=neoforge -Ptarget_minecraft_version=26.1.2 --no-configuration-cache" />
     </ExternalSystemSettings>
     <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
     <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>

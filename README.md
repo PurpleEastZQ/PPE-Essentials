@@ -22,10 +22,8 @@ PPE Essentials is a lightweight mod that adds useful commands (like /tpa /repeat
 
 ## Supported Versions
 
-- NeoForge 1.21.1
-- Fabric 1.21.1
-
-Additional Minecraft 1.21+ versions are planned.
+- NeoForge 1.21.1, 1.21.11, 26.1.2
+- Fabric 1.21.1, 1.21.11, 26.1.2
 
 <br>
 
@@ -86,29 +84,17 @@ All configuration options are located in `config/ppe_essentials-common.toml`.
 
 ## Building & Installation
 
-Build NeoForge:
-
-```powershell
-.\gradlew.bat buildNeoForge --no-daemon
-```
-
-Build Fabric:
-
-```powershell
-.\gradlew.bat buildFabric --no-daemon
-```
-
 When passing PowerShell project properties, quote the whole `-P...` argument:
 
 ```powershell
+.\gradlew.bat buildNeoForge --no-daemon
+.\gradlew.bat buildFabric --no-daemon
 .\gradlew.bat buildNeoForge "-Ptarget_minecraft_version=1.21.11" --no-daemon
 .\gradlew.bat buildFabric "-Ptarget_minecraft_version=1.21.11" --no-daemon
+.\gradlew.bat buildNeoForge "-Ptarget_minecraft_version=26.1.2" --no-daemon
+.\gradlew.bat buildFabric "-Ptarget_minecraft_version=26.1.2" --no-daemon
 ```
 
-Build environment requirements:
+Built jars are generated under `build/libs/`. Put the matches jar into your `mods` folder.
 
-- JDK 25
-
-Built jars are generated under `build/libs/`.
-
-Put the matches jar into your `mods` folder. Fabric requires Fabric API.
+Fabric requires Fabric API.
