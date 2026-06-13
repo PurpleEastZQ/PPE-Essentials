@@ -79,7 +79,6 @@ PPE Essentials is a lightweight mod that adds useful commands (like /tpa /repeat
 ## Configuration
 
 All configuration options are located in `config/ppe_essentials-common.toml`.
-The `[PPE]` message prefix is disabled by default. Set `messagePrefixEnabled = true` to show it.
 
 <br>
 
