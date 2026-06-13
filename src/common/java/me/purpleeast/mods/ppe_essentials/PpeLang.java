@@ -15,7 +15,12 @@ import java.util.Locale;
 import java.util.Map;
 
 public class PpeLang {
-    public static final String PREFIX = "§7[§dPPE§7] ";
+    public static final Component PREFIX = Component.literal("")
+            .append(coloredLiteral("[", 0xAAAAAA))
+            .append(coloredLiteral("P", 0xF378F3))
+            .append(coloredLiteral("P", 0xF655C8))
+            .append(coloredLiteral("E", 0xF9329D))
+            .append(coloredLiteral("] ", 0xAAAAAA));
 
     private static final Map<String, Map<String, String>> LANGUAGES = Map.of(
             "zh_cn", load("zh_cn"),
@@ -46,7 +51,7 @@ public class PpeLang {
     }
 
     public static MutableComponent prefixed(Component component) {
-        return Component.literal(PREFIX).append(component);
+        return PREFIX.copy().append(component);
     }
 
     public static String format(String key, Object... args) {
@@ -87,6 +92,10 @@ public class PpeLang {
 
     private static Object toPlainText(Object arg) {
         return arg instanceof Component component ? component.getString() : arg;
+    }
+
+    private static MutableComponent coloredLiteral(String text, int color) {
+        return Component.literal(text).withStyle(style -> style.withColor(color));
     }
 
     private static Map<String, String> load(String language) {

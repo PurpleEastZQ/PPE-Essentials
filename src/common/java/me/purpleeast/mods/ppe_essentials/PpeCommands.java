@@ -661,7 +661,7 @@ public class PpeCommands {
     private static void keepFlyEnabled(MinecraftServer server) {
         PpePlayerData data = PpePlayerData.get(server);
         for (ServerPlayer player : server.getPlayerList().getPlayers()) {
-            if (data.isFlyEnabled(player.getUUID()) && !player.getAbilities().mayfly) {
+            if (data.isFlyEnabled(player.getUUID())) {
                 setMayFly(player, true);
             }
         }
