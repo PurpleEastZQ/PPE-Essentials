@@ -16,7 +16,7 @@ public class EndermanTakeBlockGoalMixin {
     private EnderMan enderman;
 
     @Inject(method = "canUse", at = @At("HEAD"), cancellable = true)
-    private void ppeEssential$preventBlockPickup(CallbackInfoReturnable<Boolean> cir) {
+    private void ppeEssentials$preventBlockPickup(CallbackInfoReturnable<Boolean> cir) {
         if (PpeMobGriefing.shouldPreventBlockGriefing(this.enderman)) {
             cir.setReturnValue(false);
         }

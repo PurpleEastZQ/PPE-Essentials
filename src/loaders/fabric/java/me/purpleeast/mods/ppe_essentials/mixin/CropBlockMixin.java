@@ -22,9 +22,9 @@ public class CropBlockMixin {
             ),
             require = 0
     )
-    @Group(name = "ppeEssential$preventRavagerCropBreaking", min = 1)
-    private boolean ppeEssential$preventRavagerCropBreaking(Level level, BlockPos pos, boolean drop, Entity entity) {
-        if (ppeEssential$shouldKeepCrop(entity)) {
+    @Group(name = "ppeEssentials$preventRavagerCropBreaking", min = 1)
+    private boolean ppeEssentials$preventRavagerCropBreaking(Level level, BlockPos pos, boolean drop, Entity entity) {
+        if (ppeEssentials$shouldKeepCrop(entity)) {
             return false;
         }
         return level.destroyBlock(pos, drop, entity);
@@ -38,15 +38,15 @@ public class CropBlockMixin {
             ),
             require = 0
     )
-    @Group(name = "ppeEssential$preventRavagerCropBreaking", min = 1)
-    private boolean ppeEssential$preventRavagerCropBreakingModern(ServerLevel level, BlockPos pos, boolean drop, Entity entity) {
-        if (ppeEssential$shouldKeepCrop(entity)) {
+    @Group(name = "ppeEssentials$preventRavagerCropBreaking", min = 1)
+    private boolean ppeEssentials$preventRavagerCropBreakingModern(ServerLevel level, BlockPos pos, boolean drop, Entity entity) {
+        if (ppeEssentials$shouldKeepCrop(entity)) {
             return false;
         }
         return level.destroyBlock(pos, drop, entity);
     }
 
-    private boolean ppeEssential$shouldKeepCrop(Entity entity) {
+    private boolean ppeEssentials$shouldKeepCrop(Entity entity) {
         return entity instanceof Ravager && PpeMobGriefing.shouldPreventBlockGriefing(entity);
     }
 }

@@ -18,9 +18,9 @@ public class RavagerMixin {
             ),
             require = 0
     )
-    @Group(name = "ppeEssential$preventRavagerLeafBreaking", min = 1)
-    private boolean ppeEssential$preventLeafBreaking(@Coerce Object gameRules, @Coerce Object key) {
-        return ppeEssential$mobGriefingBoolean(gameRules, key);
+    @Group(name = "ppeEssentials$preventRavagerLeafBreaking", min = 1)
+    private boolean ppeEssentials$preventLeafBreaking(@Coerce Object gameRules, @Coerce Object key) {
+        return ppeEssentials$mobGriefingBoolean(gameRules, key);
     }
 
     @Redirect(
@@ -31,9 +31,9 @@ public class RavagerMixin {
             ),
             require = 0
     )
-    @Group(name = "ppeEssential$preventRavagerLeafBreaking", min = 1)
-    private boolean ppeEssential$preventLeafBreakingModern(@Coerce Object gameRules, @Coerce Object key) {
-        return ppeEssential$mobGriefingBoolean(gameRules, key);
+    @Group(name = "ppeEssentials$preventRavagerLeafBreaking", min = 1)
+    private boolean ppeEssentials$preventLeafBreakingModern(@Coerce Object gameRules, @Coerce Object key) {
+        return ppeEssentials$mobGriefingBoolean(gameRules, key);
     }
 
     @Redirect(
@@ -44,22 +44,22 @@ public class RavagerMixin {
             ),
             require = 0
     )
-    @Group(name = "ppeEssential$preventRavagerLeafBreaking", min = 1)
-    private Object ppeEssential$preventLeafBreakingModernValue(@Coerce Object gameRules, @Coerce Object key) {
+    @Group(name = "ppeEssentials$preventRavagerLeafBreaking", min = 1)
+    private Object ppeEssentials$preventLeafBreakingModernValue(@Coerce Object gameRules, @Coerce Object key) {
         if (PpeMobGriefing.shouldPreventBlockGriefing((Ravager) (Object) this)) {
             return Boolean.FALSE;
         }
-        return ppeEssential$gameRuleValue(gameRules, "get", key);
+        return ppeEssentials$gameRuleValue(gameRules, "get", key);
     }
 
-    private boolean ppeEssential$mobGriefingBoolean(Object gameRules, Object key) {
+    private boolean ppeEssentials$mobGriefingBoolean(Object gameRules, Object key) {
         if (PpeMobGriefing.shouldPreventBlockGriefing((Ravager) (Object) this)) {
             return false;
         }
-        return (Boolean) ppeEssential$gameRuleValue(gameRules, "getBoolean", key);
+        return (Boolean) ppeEssentials$gameRuleValue(gameRules, "getBoolean", key);
     }
 
-    private Object ppeEssential$gameRuleValue(Object gameRules, String methodName, Object key) {
+    private Object ppeEssentials$gameRuleValue(Object gameRules, String methodName, Object key) {
         try {
             return gameRules.getClass().getMethod(methodName, key.getClass()).invoke(gameRules, key);
         } catch (ReflectiveOperationException exception) {

@@ -15,7 +15,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Commands.class)
 public class CommandsMixin {
     @Inject(method = "performCommand", at = @At("HEAD"))
-    private void ppeEssential$rememberCommand(ParseResults<CommandSourceStack> parseResults, String command, CallbackInfo callback) {
+    private void ppeEssentials$rememberCommand(ParseResults<CommandSourceStack> parseResults, String command, CallbackInfo callback) {
         CommandSourceStack source = parseResults.getContext().getSource();
         if (PpeConfig.commandEnabled("repeat")
                 && source.getEntity() instanceof ServerPlayer player

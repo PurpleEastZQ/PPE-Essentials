@@ -19,9 +19,9 @@ public class CreeperMixin {
             index = 5,
             require = 0
     )
-    @Group(name = "ppeEssential$preventCreeperBlockDamage", min = 1)
-    private Level.ExplosionInteraction ppeEssential$preventBlockDamage(Level.ExplosionInteraction interaction) {
-        return ppeEssential$blockDamageInteraction(interaction);
+    @Group(name = "ppeEssentials$preventCreeperBlockDamage", min = 1)
+    private Level.ExplosionInteraction ppeEssentials$preventBlockDamage(Level.ExplosionInteraction interaction) {
+        return ppeEssentials$blockDamageInteraction(interaction);
     }
 
     @ModifyArg(
@@ -33,12 +33,12 @@ public class CreeperMixin {
             index = 5,
             require = 0
     )
-    @Group(name = "ppeEssential$preventCreeperBlockDamage", min = 1)
-    private Level.ExplosionInteraction ppeEssential$preventBlockDamageModern(Level.ExplosionInteraction interaction) {
-        return ppeEssential$blockDamageInteraction(interaction);
+    @Group(name = "ppeEssentials$preventCreeperBlockDamage", min = 1)
+    private Level.ExplosionInteraction ppeEssentials$preventBlockDamageModern(Level.ExplosionInteraction interaction) {
+        return ppeEssentials$blockDamageInteraction(interaction);
     }
 
-    private Level.ExplosionInteraction ppeEssential$blockDamageInteraction(Level.ExplosionInteraction interaction) {
+    private Level.ExplosionInteraction ppeEssentials$blockDamageInteraction(Level.ExplosionInteraction interaction) {
         if (PpeMobGriefing.shouldPreventBlockGriefing((Creeper) (Object) this)) {
             return Level.ExplosionInteraction.NONE;
         }

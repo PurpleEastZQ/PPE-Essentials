@@ -16,7 +16,7 @@ public class EndermanLeaveBlockGoalMixin {
     private EnderMan enderman;
 
     @Inject(method = "canUse", at = @At("HEAD"), cancellable = true)
-    private void ppeEssential$preventBlockPlacement(CallbackInfoReturnable<Boolean> cir) {
+    private void ppeEssentials$preventBlockPlacement(CallbackInfoReturnable<Boolean> cir) {
         if (PpeMobGriefing.shouldPreventBlockGriefing(this.enderman)) {
             cir.setReturnValue(false);
         }
